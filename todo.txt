@@ -1,3 +1,10 @@
+tweets
+   -->creating
+      -->text
+      -->image
+   -->delete
+   -->retweating
+
 users-
  -->register
  -->login
