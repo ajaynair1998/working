@@ -1,35 +1,43 @@
-<!-- @format -->
-
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block head_title %}
 Home!
 {% endblock head_title %}
 
-{% block content %} 
+{% block content %}
 
-Welcome to the Home page ! 
+Welcome to the Home page !
 
 <div id='tweets'>
-    replace me
+    Loading...
 </div>
 
 <script>
-    const tweetsElement=document.getElementById('tweets')
-    tweetsElement.innerHTML='Loading.....'
-    const xhr =new XMLHttpRequest()
-    const method ='GET' //'POST' IS ALSO THERE
-    const url='/list'
-    const responseType='json'
+    const tweetsElement = document.getElementById('tweets')
+    var finalTweetStr = ''
 
-    xhr.responseType=responseType
-    xhr.open(method,url)
-    xhr.onload =function(){
+    const xhr = new XMLHttpRequest()
+    const method = 'GET' //'POST' IS ALSO THERE
+    const url = '/list'
+    const responseType = 'json'
+
+    xhr.responseType = responseType
+    xhr.open(method, url)
+    xhr.onload = function () {
         // console.log(xhr.response)
-        const serverResponse=xhr.response
-        var ListedItems=serverResponse.response
-        console.log(ListedItems)
+    const serverResponse = xhr.response
+    var ListedItems = serverResponse.response
+
+    for (let i = 0; i < ListedItems.length; i++) {
+        let current = '<h1>' + ListedItems[i].id + '</h1>' + '<p>' + ListedItems[i].content + '</p>'
+        finalTweetStr += current
     }
+    console.log(ListedItems)
+    console.log(finalTweetStr)
+    tweetsElement.innerHTML = finalTweetStr
+    
+    }
+    
     xhr.send()
 
 </script>
