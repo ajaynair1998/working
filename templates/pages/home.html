@@ -22,6 +22,20 @@ Welcome to the Home page !
     const responseType = 'json'
 
     xhr.responseType = responseType
+    function handleDidLike(tweet_id,tweet_likes)
+    {
+        console.log(tweet_id,tweet_likes)
+    }
+    function likeButton(tweet) 
+    {
+            return '<button class="btn btn-primary btn-sm" onclick=handleDidLike('+tweet.id+','+tweet.likes+')>'+tweet.likes+' Likes</button>'
+        }
+
+    function eachTweet(ListedItem)
+    {
+        return '<div class="mb-4 " id="tweet-' + ListedItem.id + '">'  +'<p>' + ListedItem.content + '</p>' +'<div>'+ likeButton(ListedItem) +'</div>'+ '</div>'
+    }
+    
     xhr.open(method, url)
     xhr.onload = function () {
         // console.log(xhr.response)
@@ -29,7 +43,7 @@ Welcome to the Home page !
     var ListedItems = serverResponse.response
 
     for (let i = 0; i < ListedItems.length; i++) {
-        let current = '<h1>' + ListedItems[i].id + '</h1>' + '<p>' + ListedItems[i].content + '</p>'
+        let current = eachTweet(ListedItems[i])
         finalTweetStr += current
     }
     console.log(ListedItems)
