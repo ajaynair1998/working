@@ -15,6 +15,12 @@ from .models import Tweet
 #     except:
 #         raise Http404
 #     return HttpResponse(f'<h1>Hello world! and hello {tweet_id}-{obj.content}</h1>')
+def tweet_list_view(request,*args,**kwargs):
+    '''rest api view'''
+    qs=Tweet.objects.all()
+    tweets_list=[{'id':x.id,'content':x.content} for x in qs]
+    data={'response':tweets_list}
+    return JsonResponse(data)
 
 def home_detail_view(request,tweet_id,*args,**kwargs):
     data={
