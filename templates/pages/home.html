@@ -9,5 +9,19 @@ Home!
 {% block content %} 
 
 Welcome to the Home page ! 
+<script>
+    const xhr =new XMLHttpRequest()
+    const method ='GET' //'POST' IS ALSO THERE
+    const url='/list'
+    const responseType='json'
+
+    xhr.responseType=responseType
+    xhr.open(method,url)
+    xhr.onload =function(){
+        console.log(xhr.response)
+    }
+    xhr.send()
+
+</script>
 
 {% endblock content %}
