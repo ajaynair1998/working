@@ -1,12 +1,37 @@
 from django.shortcuts import render
-from django.http import HttpResponse 
+from django.http import HttpResponse ,Http404,JsonResponse
 from .models import Tweet
 
 # Create your views here.
 
+# def home_detail_view(request,tweet_id,*args,**kwargs):
+#     '''
+#     rest api view 
+#     Consume by js or swift or java or ios or android
+#     return json data
+#     '''
+#     try:
+#         obj=Tweet.objects.get(id=tweet_id)
+#     except:
+#         raise Http404
+#     return HttpResponse(f'<h1>Hello world! and hello {tweet_id}-{obj.content}</h1>')
+
 def home_detail_view(request,tweet_id,*args,**kwargs):
-    obj=Tweet.objects.get(id=tweet_id)
-    return HttpResponse(f'<h1>Hello world! and hello {tweet_id}-{obj.content}</h1>')
+    data={
+        'id':tweet_id
+        #image_path':obj.image.url
+    }
+    status=200
+    try:
+        obj=Tweet.objects.get(id=tweet_id)
+        data['content']=obj.content
+    except:
+        data['message']='Not Found'
+        status=404
+
+    
+
+    return JsonResponse(data,status=status)
 
 def home_view(request,*args,**kwargs):
     return HttpResponse(f'<h1>HELLO <h1>')
