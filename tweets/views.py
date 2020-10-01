@@ -34,4 +34,5 @@ def home_detail_view(request,tweet_id,*args,**kwargs):
     return JsonResponse(data,status=status)
 
 def home_view(request,*args,**kwargs):
-    return HttpResponse(f'<h1>HELLO <h1>')
+    return render(request,'pages/home.html')
+    # return HttpResponse(f'<h1>HELLO <h1>')
