@@ -6,7 +6,8 @@ Home!
 
 {% block content %}
 
-Welcome to the Home page !
+<h1 class='text-center'>Welcome to the Home page !</h1> 
+<br>
 
 <div id='tweets'>
     Loading...
@@ -33,7 +34,7 @@ Welcome to the Home page !
 
     function eachTweet(ListedItem)
     {
-        return '<div class="mb-4 " id="tweet-' + ListedItem.id + '">'  +'<p>' + ListedItem.content + '</p>' +'<div>'+ likeButton(ListedItem) +'</div>'+ '</div>'
+        return '<div class="jumbotron"><h1 class="display-4">'+ListedItem.content+'</h1>\<hr class="my-4">\<a class="btn btn-primary btn-sm" href="#" role="button">'+likeButton(ListedItem)+'</a></div>'
     }
     
     xhr.open(method, url)
