@@ -22,5 +22,5 @@ urlpatterns = [
     path('home',home_view),
     path('home/<int:tweet_id>',home_detail_view),
     path('list',tweet_list_view),
-    path('create_tweet',tweet_create_view),
+    path('create_tweet/',tweet_create_view),
 ]
