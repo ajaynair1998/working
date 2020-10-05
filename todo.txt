@@ -4,6 +4,7 @@ tweets
       -->image
    -->delete
    -->retweating
+   -->liking
 
 users-s
  -->register
